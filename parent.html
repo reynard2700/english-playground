@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>👪 Area Orang Tua</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .parent-dashboard {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .parent-dashboard h1 {
+            color: #5b4b3a;
+            text-align: center;
+            font-size: 2rem;
+        }
+        .parent-dashboard .subtitle {
+            text-align: center;
+            color: #7a6855;
+            margin-bottom: 20px;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: #faf1e7;
+            border-radius: 20px;
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-card .number {
+            font-size: 2.4rem;
+            font-weight: bold;
+            color: #ffb347;
+        }
+        .stat-card .label {
+            font-size: 0.9rem;
+            color: #7a6855;
+        }
+        .vocab-list {
+            background: #faf1e7;
+            border-radius: 20px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .vocab-list h3 {
+            margin-top: 0;
+            color: #5b4b3a;
+        }
+        .vocab-item {
+            display: inline-block;
+            background: white;
+            padding: 6px 16px;
+            border-radius: 40px;
+            margin: 4px 6px 4px 0;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .btn-back {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: #ffc857;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #3d2e1e;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+        .btn-back:hover {
+            background: #f0b840;
+        }
+        .btn-reset {
+            background: #e8d5c4;
+            border: none;
+            border-radius: 40px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            color: #5b4b3a;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+        .btn-reset:hover {
+            background: #dcc8b4;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent-dashboard">
+        <h1>👪 Area Orang Tua</h1>
+        <p class="subtitle">Lihat perkembangan si kecil di sini.</p>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="number" id="total-games">0</div>
+                <div class="label">🎮 Total Game</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="total-stars">0</div>
+                <div class="label">⭐ Total Bintang</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="total-words">0</div>
+                <div class="label">📚 Kata Dipelajari</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="avg-score">0</div>
+                <div class="label">📊 Rata-rata Skor</div>
+            </div>
+        </div>
+
+        <div class="vocab-list">
+            <h3>📖 Kosakata yang Sudah Dipelajari</h3>
+            <div id="vocab-words">
+                <span class="vocab-item">🐱 Cat</span>
+                <span class="vocab-item">🐶 Dog</span>
+                <span class="vocab-item">🐦 Bird</span>
+            </div>
+            <p style="font-size:0.8rem;color:#7a6855;margin-top:8px;">
+                *Daftar ini akan bertambah saat anak menyelesaikan game.
+            </p>
+        </div>
+
+        <button class="btn-reset" id="btn-reset">🔄 Reset Semua Data</button>
+        <a href="index.html" class="btn-back">🏠 Kembali ke Playground</a>
+    </div>
+
+    <script>
+        // ============================================================
+        // PARENT DASHBOARD — Baca data dari localStorage
+        // ============================================================
+
+        // Ambil data progress
+        const progress = JSON.parse(localStorage.getItem('english_progress') || '{"games":0,"stars":0,"words":[]}');
+
+        // Update statistik
+        document.getElementById('total-games').textContent = progress.games || 0;
+        document.getElementById('total-stars').textContent = progress.stars || 0;
+        document.getElementById('total-words').textContent = progress.words ? progress.words.length : 0;
+
+        // Hitung rata-rata skor
+        const avg = progress.games > 0 ? Math.round((progress.stars / progress.games) * 10) / 10 : 0;
+        document.getElementById('avg-score').textContent = avg;
+
+        // Tampilkan daftar kata
+        const vocabContainer = document.getElementById('vocab-words');
+        if (progress.words && progress.words.length > 0) {
+            vocabContainer.innerHTML = progress.words.map(w => 
+                `<span class="vocab-item">${w.emoji || '📝'} ${w.word || w}</span>`
+            ).join('');
+        } else {
+            vocabContainer.innerHTML = '<span style="color:#aaa;">Belum ada kata yang dipelajari.</span>';
+        }
+
+        // Tombol Reset
+        document.getElementById('btn-reset').addEventListener('click', () => {
+            if (confirm('Yakin mau reset semua data? Ini tidak bisa dibatalkan!')) {
+                localStorage.removeItem('english_progress');
+                location.reload();
+            }
+        });
+    </script>
+</body>
+</html>

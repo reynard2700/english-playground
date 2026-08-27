@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>English Playground - Anthony & Susan</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <!-- LAYAR UTAMA -->
+    <div id="main-menu" class="screen active">
+        <div class="header">
+            <div class="mascots">
+                <span class="mascot">👦 Anthony</span>
+                <span class="mascot">👧 Susan</span>
+            </div>
+            <button id="parent-gate-btn" class="btn-parent">👪 Orang Tua</button>
+        </div>
+
+        <div class="hero">
+            <h1>🎈 English Playground</h1>
+            <p class="subtitle">Pilih game yang mau dimainkan!</p>
+
+            <div class="game-choices">
+                <button id="btn-game-find" class="btn-game-choice">
+                    <span class="game-icon">🔍</span>
+                    <span class="game-text">
+                        <span class="game-name">Find It!</span>
+                        <span class="game-desc">Cari gambar sesuai kata</span>
+                    </span>
+                </button>
+                <button id="btn-game-what" class="btn-game-choice">
+                    <span class="game-icon">❓</span>
+                    <span class="game-text">
+                        <span class="game-name">What's This?</span>
+                        <span class="game-desc">Tebak kata dari gambar</span>
+                    </span>
+                </button>
+                <button id="btn-game-feed" class="btn-game-choice" style="border-color:#f7a1c4;">
+                    <span class="game-icon">👹</span>
+                    <span class="game-text">
+                        <span class="game-name">Feed the Monster</span>
+                        <span class="game-desc">Beri makan monster!</span>
+                    </span>
+                </button>
+                <button id="btn-game-pet" class="btn-game-choice" style="border-color:#c8a8e8;">
+                    <span class="game-icon">🐾</span>
+                    <span class="game-text">
+                        <span class="game-name">Your Pet</span>
+                        <span class="game-desc">Lihat & rawat hewanmu!</span>
+                    </span>
+                </button>
+            </div>
+
+            <div class="characters">
+                <span>👦</span><span>👧</span><span>🐱</span><span>🐶</span><span>🍽️</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYAR GAME -->
+    <div id="game-screen" class="screen">
+        <div class="game-header">
+            <button id="btn-back-game" style="background:none;border:none;font-size:2rem;cursor:pointer;padding:4px 12px;">🏠</button>
+            <span id="game-mascot">👦</span>
+            <span id="game-title">Find It!</span>
+            <span id="game-score">⭐ 0</span>
+        </div>
+        <div id="game-area"></div>
+        <div id="game-feedback" class="feedback"></div>
+    </div>
+
+    <!-- LAYAR SELAMAT -->
+    <div id="celebration-screen" class="screen">
+        <div class="celebration">
+            <h1>🎉 SELAMAT! 🎉</h1>
+            <p>Kamu hebat sekali!</p>
+            <div id="stars-display">⭐⭐⭐</div>
+            <button id="btn-replay" class="btn-primary">🔄 Main Lagi</button>
+            <button id="btn-home" class="btn-secondary">🏠 Ke Beranda</button>
+        </div>
+    </div>
+
+    <!-- PARENT GATE MODAL -->
+    <div id="parent-gate-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>👪 Area Orang Tua</h2>
+            <p>Tahan tombol di bawah selama <strong>5 detik</strong> untuk masuk.</p>
+            <button id="hold-btn" class="btn-hold">🔒 Tahan di sini</button>
+            <div id="hold-progress" class="progress-bar">
+                <div id="hold-progress-fill" style="width:0%"></div>
+            </div>
+            <button id="close-modal" class="btn-close">Tutup</button>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

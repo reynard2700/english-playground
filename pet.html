@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>🐾 Your Pet - English Playground</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        /* ============================================================
+           PET PAGE — STYLE KHUSUS
+           ============================================================ */
+        .pet-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #f9f3e8;
+        }
+
+        .pet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 4px dashed #e2d4c4;
+            margin-bottom: 16px;
+        }
+        .pet-header h1 {
+            font-size: 1.8rem;
+            color: #5b4b3a;
+            margin: 0;
+        }
+        .pet-points {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #ffb347;
+            background: white;
+            padding: 6px 20px;
+            border-radius: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* AREA HEWAN */
+        .pet-area {
+            background: white;
+            border-radius: 48px;
+            padding: 30px 20px 20px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+        }
+
+        .pet-emoji-wrapper {
+            font-size: 8rem;
+            line-height: 1.2;
+            transition: all 0.3s;
+            position: relative;
+            display: inline-block;
+        }
+        .pet-emoji-wrapper.trex {
+            font-size: 9.5rem;
+        }
+
+        .pet-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3d2e1e;
+            margin-top: 4px;
+        }
+        .pet-name-input {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3d2e1e;
+            border: none;
+            border-bottom: 3px dashed #ffc857;
+            background: transparent;
+            text-align: center;
+            max-width: 200px;
+            outline: none;
+        }
+
+        .pet-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin: 16px 0 8px;
+        }
+        .stat-item {
+            background: #faf1e7;
+            border-radius: 20px;
+            padding: 10px 6px;
+        }
+        .stat-item .label {
+            font-size: 0.85rem;
+            color: #7a6855;
+        }
+        .stat-item .value {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #3d2e1e;
+        }
+        .stat-item .value.gold {
+            color: #ffb347;
+        }
+        .stat-item .value.green {
+            color: #6fbf4c;
+        }
+        .stat-item .value.blue {
+            color: #4a8db7;
+        }
+
+        /* BAR PROGRESS LEVEL */
+        .level-progress {
+            margin: 12px 0 16px;
+            background: #e9e0d6;
+            border-radius: 40px;
+            height: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        .level-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffc857, #f3a13b);
+            border-radius: 40px;
+            transition: width 0.5s;
+            width: 0%;
+        }
+        .level-progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #3d2e1e;
+        }
+
+        /* TOMBOL AKSI */
+        .pet-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .btn-pet-action {
+            border: none;
+            border-radius: 24px;
+            padding: 14px 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            touch-action: manipulation;
+            transition: all 0.15s;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .btn-pet-action:active {
+            transform: scale(0.94);
+        }
+        .btn-pet-action .icon {
+            font-size: 1.8rem;
+        }
+        .btn-pet-action .cost {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .btn-feed {
+            background: #ffc857;
+            color: #3d2e1e;
+        }
+        .btn-bath {
+            background: #b5d3e7;
+            color: #1f3a4b;
+        }
+        .btn-play {
+            background: #c8e6c9;
+            color: #2e5c3a;
+        }
+        .btn-pet-action:disabled {
+            opacity: 0.4;
+            transform: none !important;
+        }
+
+        /* TOMBOL LAIN */
+        .pet-other-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn-pet-other {
+            background: #e8d5c4;
+            border: none;
+            border-radius: 40px;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #3d2e1e;
+            cursor: pointer;
+            touch-action: manipulation;
+            transition: all 0.15s;
+        }
+        .btn-pet-other:active {
+            transform: scale(0.94);
+        }
+        .btn-pet-other.primary {
+            background: #ffc857;
+        }
+
+        .btn-back-home {
+            background: #d4c9bc;
+            border: none;
+            border-radius: 40px;
+            padding: 14px 24px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #3d2e1e;
+            cursor: pointer;
+            touch-action: manipulation;
+            margin-top: 12px;
+            width: 100%;
+            transition: all 0.15s;
+        }
+        .btn-back-home:active {
+            transform: scale(0.96);
+        }
+
+        /* ANIMASI HEWAN */
+        .pet-anim-idle {
+            animation: petIdle 1.8s ease-in-out infinite;
+        }
+        @keyframes petIdle {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-8px) scale(1.03); }
+        }
+
+        .pet-anim-eating {
+            animation: petEating 0.6s ease-in-out 3;
+        }
+        @keyframes petEating {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.15) rotate(-6deg); }
+            75% { transform: scale(1.15) rotate(6deg); }
+        }
+
+        .pet-anim-bathing {
+            animation: petBathing 0.8s ease-in-out 3;
+        }
+        @keyframes petBathing {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-12deg) scale(0.92); }
+            75% { transform: rotate(12deg) scale(0.92); }
+        }
+
+        .pet-anim-playing {
+            animation: petPlaying 0.6s ease-in-out 4;
+        }
+        @keyframes petPlaying {
+            0%, 100% { transform: translateX(0px) scaleX(1); }
+            25% { transform: translateX(-25px) scaleX(-1); }
+            75% { transform: translateX(25px) scaleX(-1); }
+        }
+
+        .pet-anim-levelup {
+            animation: petLevelUp 0.8s ease-in-out 2;
+        }
+        @keyframes petLevelUp {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.5) rotate(-8deg); }
+            75% { transform: scale(1.5) rotate(8deg); }
+        }
+
+        /* EFEK BINTANG LEVEL UP */
+        .sparkle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .sparkle {
+            position: absolute;
+            font-size: 2rem;
+            animation: sparkleFloat 1.5s ease-out forwards;
+        }
+        @keyframes sparkleFloat {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-80px) scale(0.5); }
+        }
+
+        /* RESPONSIF */
+        @media (max-width: 480px) {
+            .pet-area {
+                padding: 20px 16px;
+                min-height: 220px;
+            }
+            .pet-emoji-wrapper {
+                font-size: 5.5rem;
+            }
+            .pet-emoji-wrapper.trex {
+                font-size: 7rem;
+            }
+            .pet-name {
+                font-size: 1.5rem;
+            }
+            .pet-stats {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 8px;
+            }
+            .stat-item .value {
+                font-size: 1.2rem;
+            }
+            .pet-actions {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 8px;
+            }
+            .btn-pet-action {
+                padding: 10px 6px;
+                font-size: 0.85rem;
+            }
+            .btn-pet-action .icon {
+                font-size: 1.4rem;
+            }
+            .pet-header h1 {
+                font-size: 1.4rem;
+            }
+            .pet-points {
+                font-size: 1.2rem;
+                padding: 4px 14px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .pet-emoji-wrapper {
+                font-size: 4.5rem;
+            }
+            .pet-emoji-wrapper.trex {
+                font-size: 5.5rem;
+            }
+            .pet-stats {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 4px;
+            }
+            .stat-item {
+                padding: 6px 4px;
+            }
+            .stat-item .value {
+                font-size: 1rem;
+            }
+            .pet-actions {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 4px;
+            }
+            .btn-pet-action {
+                padding: 8px 4px;
+                font-size: 0.75rem;
+            }
+            .btn-pet-action .icon {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pet-container">
+        <!-- HEADER -->
+        <div class="pet-header">
+            <h1>🐾 Your Pet</h1>
+            <div class="pet-points">⭐ <span id="pet-points-display">0</span></div>
+        </div>
+
+        <!-- AREA HEWAN -->
+        <div class="pet-area" id="pet-area">
+            <div class="pet-emoji-wrapper" id="pet-emoji-wrapper">
+                <span id="pet-emoji">🐶</span>
+            </div>
+            <div class="pet-name">
+                <input type="text" class="pet-name-input" id="pet-name-input" value="Buddy" maxlength="12" />
+            </div>
+
+            <!-- STATS -->
+            <div class="pet-stats">
+                <div class="stat-item">
+                    <div class="label">❤️ Kesehatan</div>
+                    <div class="value green" id="pet-health">100</div>
+                </div>
+                <div class="stat-item">
+                    <div class="label">🍖 Kenyang</div>
+                    <div class="value gold" id="pet-hunger">100</div>
+                </div>
+                <div class="stat-item">
+                    <div class="label">😊 Bahagia</div>
+                    <div class="value blue" id="pet-happiness">100</div>
+                </div>
+            </div>
+
+            <!-- LEVEL PROGRESS -->
+            <div class="level-progress">
+                <div class="level-progress-fill" id="level-progress-fill" style="width:0%;"></div>
+                <div class="level-progress-text" id="level-progress-text">Level 1</div>
+            </div>
+
+            <!-- TOMBOL AKSI -->
+            <div class="pet-actions">
+                <button class="btn-pet-action btn-feed" id="btn-feed" data-cost="10">
+                    <span class="icon">🍖</span>
+                    Beri Makan
+                    <span class="cost">-10 ⭐</span>
+                </button>
+                <button class="btn-pet-action btn-bath" id="btn-bath" data-cost="5">
+                    <span class="icon">🧹</span>
+                    Mandikan
+                    <span class="cost">-5 ⭐</span>
+                </button>
+                <button class="btn-pet-action btn-play" id="btn-play" data-cost="15">
+                    <span class="icon">🎮</span>
+                    Ajak Main
+                    <span class="cost">-15 ⭐</span>
+                </button>
+            </div>
+
+            <!-- TOMBOL LAIN -->
+            <div class="pet-other-actions">
+                <button class="btn-pet-other" id="btn-change-pet">🔄 Ganti Hewan</button>
+                <button class="btn-pet-other" id="btn-reset-pet">🔄 Reset Pet</button>
+            </div>
+        </div>
+
+        <!-- KEMBALI -->
+        <button class="btn-back-home" id="btn-back-home">🏠 Kembali ke Menu</button>
+    </div>
+
+    <script type="module" src="js/pet-ui.js"></script>
+</body>
+</html>
