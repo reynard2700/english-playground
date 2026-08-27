@@ -1,0 +1,546 @@
+/* ============================================================
+   STYLE.CSS — English Playground (Full)
+   ============================================================ */
+
+/* --- RESET & BASE --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Segoe UI', 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+    background: #f9f3e8;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    margin: 0;
+}
+
+/* --- LAYAR --- */
+.screen {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    min-height: 80vh;
+    background: #ffffffdd;
+    backdrop-filter: blur(4px);
+    border-radius: 48px 48px 32px 32px;
+    padding: 20px 24px 30px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.10);
+    transition: all 0.2s;
+}
+.screen.active {
+    display: flex;
+}
+
+/* --- HEADER --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.mascots {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4a3f35;
+}
+.mascot {
+    background: #f0e4d3;
+    padding: 4px 14px;
+    border-radius: 40px;
+    margin-right: 6px;
+    font-size: 1rem;
+}
+.btn-parent {
+    background: #d4c9bc;
+    border: none;
+    border-radius: 40px;
+    padding: 10px 18px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #3d352e;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+/* --- HERO (Menu Utama) --- */
+.hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+}
+.hero h1 {
+    font-size: 2.8rem;
+    color: #5b4b3a;
+    letter-spacing: -1px;
+}
+.subtitle {
+    font-size: 1.4rem;
+    color: #7a6855;
+    margin-bottom: 4px;
+}
+.characters {
+    font-size: 2.8rem;
+    letter-spacing: 8px;
+    margin-top: 8px;
+}
+
+/* --- TOMBOL PILIHAN GAME --- */
+.game-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 340px;
+    margin: 8px auto;
+}
+
+.btn-game-choice {
+    background: white;
+    border: 4px solid #e2d4c4;
+    border-radius: 32px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: all 0.15s;
+    box-shadow: 0 4px 0 #d6c9bb;
+    width: 100%;
+    text-align: left;
+}
+
+.btn-game-choice:active {
+    transform: scale(0.96);
+    box-shadow: 0 2px 0 #d6c9bb;
+}
+
+.btn-game-choice .game-icon {
+    font-size: 2.4rem;
+    min-width: 50px;
+    text-align: center;
+}
+
+.btn-game-choice .game-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.btn-game-choice .game-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3d2e1e;
+}
+
+.btn-game-choice .game-desc {
+    font-size: 0.85rem;
+    color: #7a6855;
+}
+
+.btn-game-choice#btn-game-find {
+    border-color: #ffc857;
+}
+.btn-game-choice#btn-game-find .game-icon {
+    color: #e8a020;
+}
+
+.btn-game-choice#btn-game-what {
+    border-color: #b5d3e7;
+}
+.btn-game-choice#btn-game-what .game-icon {
+    color: #4a8db7;
+}
+
+.btn-game-choice:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #d6c9bb;
+}
+.btn-game-choice#btn-game-find:hover {
+    border-color: #f0b840;
+}
+.btn-game-choice#btn-game-what:hover {
+    border-color: #8fc0dd;
+}
+
+/* --- TOMBOL LAMA (DIPERTAHANKAN UNTUK KOMPATIBILITAS) --- */
+.btn-primary, .btn-secondary {
+    border: none;
+    border-radius: 60px;
+    padding: 18px 20px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: transform 0.1s;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.1);
+}
+.btn-primary:active, .btn-secondary:active {
+    transform: scale(0.96);
+}
+.btn-primary {
+    background: #ffc857;
+    color: #3d2e1e;
+}
+.btn-secondary {
+    background: #b5d3e7;
+    color: #1f3a4b;
+}
+
+/* --- GAME HEADER --- */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 4px dashed #e2d4c4;
+    margin-bottom: 20px;
+}
+
+#btn-back-game {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 4px 12px;
+    touch-action: manipulation;
+    transition: transform 0.1s;
+}
+#btn-back-game:active {
+    transform: scale(0.85);
+}
+
+#game-title {
+    flex: 1;
+    text-align: center;
+}
+#game-mascot {
+    margin-right: 8px;
+}
+#game-score {
+    min-width: 60px;
+    text-align: right;
+}
+
+/* --- GAME AREA --- */
+#game-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    flex: 1;
+    align-content: center;
+    min-height: 200px;
+}
+
+/* --- KARTU GAME --- */
+.game-card {
+    width: 120px;
+    height: 140px;
+    background: #faf1e7;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 4.5rem;
+    box-shadow: 0 6px 0 #d6c9bb;
+    transition: all 0.15s;
+    cursor: pointer;
+    touch-action: manipulation;
+    border: 4px solid transparent;
+    padding: 6px;
+}
+.game-card:active {
+    transform: scale(0.94);
+}
+.game-card .label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4a3f35;
+    margin-top: 4px;
+    background: rgba(255,255,240,0.7);
+    padding: 2px 12px;
+    border-radius: 40px;
+}
+.game-card.correct {
+    border-color: #6fbf4c;
+    background: #e5f7db;
+}
+.game-card.wrong {
+    border-color: #f2a6a6;
+    background: #ffe6e6;
+    animation: shake 0.3s;
+}
+@keyframes shake {
+    0%,100%{transform:translateX(0)}
+    25%{transform:translateX(-10px)}
+    75%{transform:translateX(10px)}
+}
+
+/* --- FEEDBACK --- */
+.feedback {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #4a3f35;
+    text-align: center;
+    margin-top: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* --- CELEBRATION --- */
+.celebration {
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+.celebration h1 { 
+    font-size: 3rem; 
+    color: #f3a13b; 
+}
+#stars-display { 
+    font-size: 4rem; 
+}
+
+/* --- PARENT GATE MODAL --- */
+.modal {
+    position: fixed;
+    top:0;left:0;width:100%;height:100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+    z-index: 999;
+}
+.modal.hidden { display: none; }
+.modal-content {
+    background: white;
+    border-radius: 48px;
+    padding: 32px 24px;
+    max-width: 380px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+.modal-content h2 { 
+    font-size: 2rem; 
+    color: #5b4b3a; 
+    margin-bottom: 12px; 
+}
+.btn-hold {
+    background: #ffb347;
+    border: none;
+    border-radius: 60px;
+    padding: 18px 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    width: 100%;
+    margin: 16px 0;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: background 0.1s;
+}
+.btn-hold:active { background: #e69c30; }
+.progress-bar {
+    width: 100%;
+    height: 16px;
+    background: #e9e0d6;
+    border-radius: 40px;
+    overflow: hidden;
+    margin: 8px 0 16px;
+}
+#hold-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #6fbf4c;
+    border-radius: 40px;
+    transition: width 0.1s linear;
+}
+.btn-close {
+    background: #ccc;
+    border: none;
+    border-radius: 40px;
+    padding: 10px 24px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* --- RESPONSIF (HP/TABLET) --- */
+@media (max-width: 480px) {
+    .screen {
+        padding: 16px 16px 24px;
+        border-radius: 32px;
+        min-height: 90vh;
+    }
+    .game-card {
+        width: 100px;
+        height: 120px;
+        font-size: 3.5rem;
+    }
+    .game-card .label {
+        font-size: 1rem;
+    }
+    .hero h1 { 
+        font-size: 2.2rem; 
+    }
+    .btn-primary, .btn-secondary { 
+        font-size: 1.3rem; 
+        padding: 14px; 
+    }
+    .game-choices {
+        max-width: 280px;
+    }
+    .btn-game-choice {
+        padding: 14px 18px;
+        gap: 12px;
+    }
+    .btn-game-choice .game-icon {
+        font-size: 2rem;
+        min-width: 40px;
+    }
+    .btn-game-choice .game-name {
+        font-size: 1.2rem;
+    }
+    .btn-game-choice .game-desc {
+        font-size: 0.75rem;
+    }
+    .header {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .mascots {
+        font-size: 0.9rem;
+    }
+    .mascot {
+        padding: 2px 10px;
+        font-size: 0.8rem;
+    }
+    .btn-parent {
+        padding: 6px 14px;
+        font-size: 0.85rem;
+    }
+    #game-score {
+        font-size: 1.2rem;
+        min-width: 50px;
+    }
+    #game-title {
+        font-size: 1.2rem;
+    }
+    .feedback {
+        font-size: 1.4rem;
+        min-height: 60px;
+    }
+    .celebration h1 {
+        font-size: 2.2rem;
+    }
+    #stars-display {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .game-card {
+        width: 80px;
+        height: 100px;
+        font-size: 2.8rem;
+    }
+    .game-card .label {
+        font-size: 0.8rem;
+    }
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    .btn-game-choice {
+        padding: 12px 14px;
+        gap: 10px;
+    }
+    .btn-game-choice .game-icon {
+        font-size: 1.6rem;
+        min-width: 32px;
+    }
+    .btn-game-choice .game-name {
+        font-size: 1rem;
+    }
+    .btn-game-choice .game-desc {
+        font-size: 0.7rem;
+    }
+}
+
+/* --- TABLET & LAPTOP --- */
+@media (min-width: 768px) {
+    .game-card {
+        width: 150px;
+        height: 170px;
+        font-size: 5.5rem;
+    }
+    .game-card .label {
+        font-size: 1.4rem;
+    }
+    .game-choices {
+        flex-direction: row;
+        max-width: 500px;
+        gap: 20px;
+    }
+    .btn-game-choice {
+        flex: 1;
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 16px;
+        gap: 8px;
+    }
+    .btn-game-choice .game-text {
+        text-align: center;
+    }
+    .btn-game-choice .game-icon {
+        font-size: 3rem;
+        min-width: unset;
+    }
+    .btn-game-choice .game-name {
+        font-size: 1.4rem;
+    }
+    .btn-game-choice .game-desc {
+        font-size: 0.8rem;
+    }
+    .screen {
+        min-height: 70vh;
+        padding: 30px 36px 36px;
+    }
+}
+
+/* --- UTILITY --- */
+.hidden {
+    display: none !important;
+}
+.text-center {
+    text-align: center;
+}
+.mt-8 {
+    margin-top: 8px;
+}
+.mt-16 {
+    margin-top: 16px;
+}
