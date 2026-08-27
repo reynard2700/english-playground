@@ -1,5 +1,5 @@
 /* ============================================================
-   STYLE.CSS — English Playground (Full)
+   STYLE.CSS — English Playground (Full + Responsif Desktop)
    ============================================================ */
 
 /* --- RESET & BASE --- */
@@ -165,6 +165,20 @@ body {
     color: #4a8db7;
 }
 
+.btn-game-choice#btn-game-feed {
+    border-color: #f7a1c4;
+}
+.btn-game-choice#btn-game-feed .game-icon {
+    color: #d97a9e;
+}
+
+.btn-game-choice#btn-game-pet {
+    border-color: #c8a8e8;
+}
+.btn-game-choice#btn-game-pet .game-icon {
+    color: #9b6fc0;
+}
+
 .btn-game-choice:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 0 #d6c9bb;
@@ -174,6 +188,12 @@ body {
 }
 .btn-game-choice#btn-game-what:hover {
     border-color: #8fc0dd;
+}
+.btn-game-choice#btn-game-feed:hover {
+    border-color: #e88ab0;
+}
+.btn-game-choice#btn-game-pet:hover {
+    border-color: #b088d0;
 }
 
 /* --- TOMBOL LAMA (DIPERTAHANKAN UNTUK KOMPATIBILITAS) --- */
@@ -492,6 +512,59 @@ body {
 
 /* --- TABLET & LAPTOP --- */
 @media (min-width: 768px) {
+    /* Container lebih lebar untuk desktop */
+    .screen {
+        max-width: 800px;
+        padding: 30px 40px 40px;
+        border-radius: 60px;
+        min-height: auto;
+    }
+    
+    .hero h1 {
+        font-size: 3.2rem;
+    }
+    .subtitle {
+        font-size: 1.6rem;
+    }
+    
+    /* Tombol game dalam grid 2 kolom untuk desktop */
+    .game-choices {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        max-width: 600px;
+        margin: 16px auto;
+    }
+    
+    .btn-game-choice {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 16px;
+        gap: 8px;
+        border-radius: 32px;
+        min-height: 140px;
+        justify-content: center;
+    }
+    
+    .btn-game-choice .game-text {
+        text-align: center;
+        align-items: center;
+    }
+    
+    .btn-game-choice .game-icon {
+        font-size: 3rem;
+        min-width: unset;
+    }
+    
+    .btn-game-choice .game-name {
+        font-size: 1.4rem;
+    }
+    
+    .btn-game-choice .game-desc {
+        font-size: 0.9rem;
+    }
+    
+    /* Kartu game lebih besar di desktop */
     .game-card {
         width: 150px;
         height: 170px;
@@ -500,34 +573,33 @@ body {
     .game-card .label {
         font-size: 1.4rem;
     }
-    .game-choices {
-        flex-direction: row;
-        max-width: 500px;
-        gap: 20px;
+    
+    /* Header lebih lega */
+    .header {
+        font-size: 1.2rem;
     }
-    .btn-game-choice {
-        flex: 1;
-        flex-direction: column;
-        text-align: center;
-        padding: 24px 16px;
-        gap: 8px;
-    }
-    .btn-game-choice .game-text {
-        text-align: center;
-    }
-    .btn-game-choice .game-icon {
-        font-size: 3rem;
-        min-width: unset;
-    }
-    .btn-game-choice .game-name {
+    .mascots {
         font-size: 1.4rem;
     }
-    .btn-game-choice .game-desc {
-        font-size: 0.8rem;
+    .mascot {
+        padding: 6px 18px;
+        font-size: 1.1rem;
     }
-    .screen {
-        min-height: 70vh;
-        padding: 30px 36px 36px;
+    .btn-parent {
+        padding: 12px 24px;
+        font-size: 1.1rem;
+    }
+    
+    /* Game header */
+    .game-header {
+        font-size: 1.8rem;
+    }
+    #game-score {
+        font-size: 1.6rem;
+        min-width: 80px;
+    }
+    #btn-back-game {
+        font-size: 2.4rem;
     }
 }
 
